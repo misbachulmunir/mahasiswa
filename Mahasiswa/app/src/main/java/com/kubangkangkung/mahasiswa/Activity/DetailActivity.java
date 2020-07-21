@@ -17,6 +17,12 @@ import org.parceler.Parcels;
 import static com.kubangkangkung.mahasiswa.Adapter.AdapterMhs.DATA_MHS;
 
 public class DetailActivity extends AppCompatActivity {
+    public static final String KEY_ID = "key_id";
+    public static final String KEY_NAMA = "key_nama";
+    public static final String KEY_ALAMAT = "key_alamat";
+    public static final String KEY_JURUSAN = "Key_jurusan";
+    public static final String KEY_TGLLHR = "key_tgllhr";
+    public static final String KEY_JENISKEL = "key_jenkel";
     private ModelMhs datamhs;
     private TextView txtid,txtnama,txttgllahir,txtjenkel,txtjurusan,txtalamat;
 
@@ -33,7 +39,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Bundle bundle=getIntent().getBundleExtra(AdapterMhs.DATA_EXTRA);
         datamhs = Parcels.unwrap(bundle.getParcelable(DATA_MHS));
-
+        txtid.setText(String.valueOf(datamhs.getId()));
         txtnama.setText(datamhs.getNama());
         txttgllahir.setText(datamhs.getTgl_lahir());
         txtjenkel.setText(datamhs.getJenis_kelamin());
@@ -45,13 +51,14 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void EditDAta(View view) {
-//        Intent pindah=new Intent(DetailActivity.this, UpdateActivity.class);
-//                pindah.putExtra(DetailActivity.KEY_ID,datamhs.getId());
-//                pindah.putExtra(UpdateActivity.KEY_NAMA,listdata.get(position).getNama());
-//                pindah.putExtra(UpdateActivity.KEY_ALAMAT,listdata.get(position).getAlamat());
-//                pindah.putExtra(UpdateActivity.KEY_TELEPON,listdata.get(position).getTelepon());
-//
-//        ctx.startActivity(pindah);
+        Intent pindah=new Intent(DetailActivity.this, UpdateActivity.class);
+                pindah.putExtra(KEY_ID,txtid.getText());
+                pindah.putExtra(KEY_NAMA,txtnama.getText());
+                pindah.putExtra(KEY_ALAMAT,txtalamat.getText());
+                pindah.putExtra(KEY_TGLLHR,txttgllahir.getText());
+                pindah.putExtra(KEY_JENISKEL,txtjenkel.getText());
+                pindah.putExtra(KEY_JURUSAN,txtjurusan.getText());
+        startActivity(pindah);
     }
 
 }

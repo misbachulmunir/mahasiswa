@@ -49,6 +49,11 @@ String [] pilihanjurusan={"Teknik Informatika","Sistem Informasi","Rekayasa Pera
         ArrayAdapter adapter=new ArrayAdapter(TambahActivity.this,android.R.layout.simple_spinner_dropdown_item,pilihanjurusan);
         spinnerr.setAdapter(adapter);
          btnpria.toggle();
+         if(btnpria.isChecked()){
+             jenkel="Laki - laki";
+         }else {
+             jenkel="Perempuan";
+         }
          ValidasiInput();
 
         PickTanggal();

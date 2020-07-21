@@ -1,6 +1,5 @@
 package com.kubangkangkung.mahasiswa.Retrofit;
 
-import com.kubangkangkung.mahasiswa.Model.ModelMhs;
 import com.kubangkangkung.mahasiswa.Model.ResponseMhs;
 
 import retrofit2.Call;
@@ -27,7 +26,7 @@ public interface InterfcMhs {
     //utuk hapus data methodnya post
     @FormUrlEncoded
     @POST("delete.php")
-    Call<ModelMhs>HapusDataMhs(
+    Call<ResponseMhs> HapusDataMhs(
             @Field("id") int id
 
     );
@@ -35,7 +34,7 @@ public interface InterfcMhs {
     //untuk update
     @FormUrlEncoded
     @POST("update.php")
-    Call<ModelMhs>ardUpdateData(
+    Call<ResponseMhs> ardUpdateData(
             @Field("id")int id,
             @Field("nama")String nama,
             @Field("tgl_lahir")String tgl_lahir,
