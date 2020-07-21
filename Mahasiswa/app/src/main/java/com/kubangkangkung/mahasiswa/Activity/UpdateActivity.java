@@ -75,19 +75,20 @@ public class UpdateActivity extends AppCompatActivity {
             btncewe.toggle();
         }
 
-     //   spinnerr.setSelection(Integer.parseInt(pilihanjurusan[3]));
-
-//        if(jurusan.equals("Teknik Informatika")){
-//            spinnerr.setSelection(Integer.parseInt(pilihanjurusan[0]));
-//        }else if(jurusan.equals("Sistem Informasi")){
-//            spinnerr.setSelection(Integer.parseInt(pilihanjurusan[1]));
-//        }else {
-//            spinnerr.setSelection(Integer.parseInt(pilihanjurusan[2]));
-//        }
-        Log.d(TAG, "onCreate: "+jurusan);
+        spinnerr.setSelection(3);
 
         adapter=new ArrayAdapter(UpdateActivity.this,android.R.layout.simple_spinner_dropdown_item,pilihanjurusan);
         spinnerr.setAdapter(adapter);
+
+        if(jurusan.equals(pilihanjurusan[0])){
+            spinnerr.setSelection(0);
+        }else if(jurusan.equals(pilihanjurusan[1])){
+            spinnerr.setSelection(1);
+        }else {
+            spinnerr.setSelection(2);
+        }
+        Log.d(TAG, "onCreate: "+jurusan);
+
         PickTanggal();
     }
     //pick tanggal
