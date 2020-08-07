@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kubangkangkung.mahasiswa.Activity.DetailActivity;
+import com.kubangkangkung.mahasiswa.Activity.MainActivity;
 import com.kubangkangkung.mahasiswa.Model.ModelMhs;
+import com.kubangkangkung.mahasiswa.Model.ResponseMhs;
 import com.kubangkangkung.mahasiswa.R;
 
 import org.parceler.Parcels;
@@ -31,6 +33,9 @@ public class AdapterMhs extends RecyclerView.Adapter<AdapterMhs.HolderData>{
         this.ctx = ctx;
         this.listdata = listdata;
     }
+
+
+
 
     @NonNull
     @Override

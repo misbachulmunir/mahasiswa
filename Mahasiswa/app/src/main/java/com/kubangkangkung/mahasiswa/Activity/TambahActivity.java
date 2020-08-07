@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,14 +15,28 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.kubangkangkung.mahasiswa.Model.ResponseMhs;
 import com.kubangkangkung.mahasiswa.R;
 import com.kubangkangkung.mahasiswa.Retrofit.InterfcMhs;
 import com.kubangkangkung.mahasiswa.Retrofit.RetroConfig;
+import com.kubangkangkung.mahasiswa.Volley.Constant;
+import com.kubangkangkung.mahasiswa.Volley.RequestHAndler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -106,7 +121,8 @@ String [] pilihanjurusan={"Teknik Informatika","Sistem Informasi","Rekayasa Pera
                     txtalamat.setError("Alamat belum di isi");
                 }
                 else{
-                   MasukanData() ;
+                   //MasukanData() ;
+                    AddData();
                 }
 
 
@@ -136,6 +152,8 @@ String [] pilihanjurusan={"Teknik Informatika","Sistem Informasi","Rekayasa Pera
 
     //method memasukan data ke db
     private void MasukanData() {
+
+
         InterfcMhs request= RetroConfig.konekRetrofit().create(InterfcMhs.class);
         Call<ResponseMhs> simpanData=request.CreateDataMhs(nama,tgllahir,jenkel,jurusan,alamat);
         simpanData.enqueue(new Callback<ResponseMhs>() {
@@ -153,4 +171,59 @@ String [] pilihanjurusan={"Teknik Informatika","Sistem Informasi","Rekayasa Pera
             }
         });
     }
+
+    //masukan data menggunakan voley
+    private void AddData(){
+
+        String nama = txnama.getText().toString();
+        String tgllhr = txttgllahir.getText().toString();
+        String jeniskel = jenkel;
+        String alamat = txtalamat.getText().toString();
+        String jurusan = spinnerr.getSelectedItem().toString();
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.CreateUrl, new com.android.volley.Response.Listener<String>() {
+
+                @Override
+
+                public void onResponse(String response) {
+                    Log.d(TAG, "Ada Response");
+                    try{
+                        JSONObject jsonObject = new JSONObject(response);
+                       // JSONArray jsonarray = new JSONArray(response);
+                        Toast.makeText(TambahActivity.this, "Ada response", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(TambahActivity.this, jsonarray.getString("message"), Toast.LENGTH_SHORT).show();
+//                        if(jsonarray.getString("message").equals("Data Added Successfully")){
+//                            finish();
+//                        }
+                        finish();
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(TambahActivity.this, "Failed to Data"+error,Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onErrorResponse: "+error);
+                }
+            }){
+                protected Map<String , String> getParams() throws AuthFailureError {
+                    Map<String , String> params = new HashMap<>();
+                    params.put("nama", nama);
+                    params.put("tgl_lahir", tgllhr);
+                    params.put("jenis_kelamin", jeniskel);
+                    params.put("jurusan",jurusan);
+                    params.put("alamat",alamat);
+                    System.out.println(params);
+                    return params;
+                }
+            };
+            RequestHAndler.getInstance(TambahActivity.this).addToRequestQueue(stringRequest);
+
+        }
+
+
+
 }

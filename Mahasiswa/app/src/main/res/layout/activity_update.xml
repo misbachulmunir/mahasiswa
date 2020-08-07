@@ -25,6 +25,20 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/id_gambar_detail"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_baseline_person_pin_24" />
+
+        <Button
+            android:id="@+id/btnubahgambar2"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ubah Gambar" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

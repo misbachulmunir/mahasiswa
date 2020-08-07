@@ -1,6 +1,9 @@
 package com.kubangkangkung.mahasiswa.Retrofit;
 
+import com.kubangkangkung.mahasiswa.Model.ModelMhs;
 import com.kubangkangkung.mahasiswa.Model.ResponseMhs;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -11,6 +14,9 @@ import retrofit2.http.POST;
 public interface InterfcMhs {
     @GET("retrieve.php")
     Call<ResponseMhs> RetrieveDataMhs();
+
+    @GET("mahasiswa")
+    Call<List<ModelMhs>> Ambildataci();
 
     //untuk post data
     @FormUrlEncoded

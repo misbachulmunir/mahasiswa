@@ -1,24 +1,14 @@
 package com.kubangkangkung.mahasiswa.Model;
 
-import org.parceler.Parcel;
-import org.parceler.ParcelConstructor;
+import com.google.gson.annotations.SerializedName;
 
-@Parcel
-public class ModelMhs {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class ResponseList {
+ //   @SerializedName("id")
     private int id;
-    private String nama,tgl_lahir,jenis_kelamin,jurusan,alamat;
-    @ParcelConstructor
-    public ModelMhs(int id, String nama, String tgl_lahir, String jenis_kelamin, String jurusan, String alamat) {
-        this.id = id;
-        this.nama = nama;
-        this.tgl_lahir = tgl_lahir;
-        this.jenis_kelamin = jenis_kelamin;
-        this.jurusan = jurusan;
-        this.alamat = alamat;
-    }
-
-    public ModelMhs(String id, String uid, String name, String phone, String address) {
-    }
 
     public int getId() {
         return id;
@@ -67,4 +57,23 @@ public class ModelMhs {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
+  //  @SerializedName("nama")
+    private String nama;
+  //  @SerializedName("tgl_lahir")
+    private String tgl_lahir;
+  //  @SerializedName("jenis_kelamin")
+    private String jenis_kelamin;
+  //  @SerializedName("jurusan")
+    private String jurusan;
+ //   @SerializedName("alamat")
+    private String alamat;
+
+//    public ResponseList(int id, String nama, String tgl_lahir, String jenis_kelamin, String jurusan, String alamat) {
+//        this.id = id;
+//        this.nama = nama;
+//        this.tgl_lahir = tgl_lahir;
+//        this.jenis_kelamin = jenis_kelamin;
+//        this.jurusan = jurusan;
+//        this.alamat = alamat;
+//    }
 }
